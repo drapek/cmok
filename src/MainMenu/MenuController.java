@@ -1,5 +1,7 @@
 package MainMenu;
 
+import Game.GameController;
+import GlobalClasses.ExitAlert;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,21 +50,7 @@ public class MenuController implements Initializable {
 
     @FXML private void exitGameBtnClicled() {
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Pożegnanie :(");
-        alert.setHeaderText(null);
-        alert.setContentText("Dziękuje za granie kochanie :*");
-
-        try {
-            alert.setGraphic(new ImageView(this.getClass().getResource("./img/farewell_logo_on_exit.png").toString()));
-        } catch (Exception e) {
-            System.err.println("Can't find icon for farewell dialog which appear on exiting game");
-            e.printStackTrace();
-        }
-
-        alert.showAndWait();
-
-        System.exit(0);
+        new ExitAlert().exitGameBtnClicled();
     }
 
 
