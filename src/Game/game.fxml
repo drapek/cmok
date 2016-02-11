@@ -22,8 +22,8 @@
       </GridPane>
       <HBox layoutX="17.0" layoutY="720.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="944.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="161.0" text="Wróć do menu" />
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="154.0" text="Zamknij" />
+            <Button mnemonicParsing="false" onAction="#exitGameBtnClicled" prefHeight="66.0" prefWidth="161.0" text="Zamknij grę" />
+            <Button mnemonicParsing="false" onAction="#backToMenuClicked" prefHeight="66.0" prefWidth="154.0" text="Wróć do menu" />
          </children>
       </HBox>
    </children>

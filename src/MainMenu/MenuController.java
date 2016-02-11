@@ -2,6 +2,7 @@ package MainMenu;
 
 import Game.GameController;
 import GlobalClasses.ExitAlert;
+import GlobalClasses.GlobalDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,19 +22,24 @@ public class MenuController implements Initializable {
     @FXML ImageView imgLogo;
 
     @FXML private void clickedGame4x4() {
+        GlobalDTO.setImageGridPaneDimension(4, 4);
         prepareGameScene("cmok - 4x4");
     }
 
     @FXML private void clickedGame4x6() {
+        GlobalDTO.setImageGridPaneDimension(4, 6);
         prepareGameScene("cmok - 4x6");
+
     }
 
     @FXML private void clickedGame6x6() {
+        GlobalDTO.setImageGridPaneDimension(6, 6);
         prepareGameScene("cmok - 6x6");
+
     }
 
     private void prepareGameScene(String windowTitle) {
-        Stage mainWindow = ProgramLauncher.getMainWindowHndl();
+        Stage mainWindow = GlobalDTO.getMainWindowHandler();
         mainWindow.setTitle(windowTitle);
 
         try {

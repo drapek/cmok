@@ -1,24 +1,21 @@
 package MainMenu;
 
+import GlobalClasses.GlobalDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ProgramLauncher extends Application  {
-    private static Stage mainWidnowHndl;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        mainWidnowHndl = primaryStage;
+        GlobalDTO.setMainWindowHandler(primaryStage);
 
-        Parent root = FXMLLoader.load(getClass().getResource("VMainMenu.fxml"));
-        primaryStage.setTitle("cmok");
-        primaryStage.setScene(new Scene(root, 1000, 800));
-
-        primaryStage.show();
-
-
+        drawMainScene();
     }
 
 
@@ -26,5 +23,18 @@ public class ProgramLauncher extends Application  {
         launch(args);
     }
 
-    static Stage getMainWindowHndl() { return mainWidnowHndl; }
+    public void drawMainScene() {
+        Stage primaryStage = GlobalDTO.getMainWindowHandler();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("VMainMenu.fxml"));
+            primaryStage.setTitle("cmok");
+            primaryStage.setScene(new Scene(root, 1000, 800));
+            primaryStage.show();
+
+        } catch (IOException exception) {
+            System.err.println("Nie mogłem załadować pliku VMainMenu.fxml odpowiadającego za wygląd okienek! Problem IO.");
+            exception.printStackTrace();
+            System.exit(1);
+        }
+    }
 }
