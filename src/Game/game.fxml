@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -9,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameController">
    <children>
-      <GridPane fx:id="gridPaneImages" layoutX="17.0" layoutY="13.0" prefHeight="707.0" prefWidth="944.0" style="-fx-background-color: #AAAAAA;">
+      <GridPane fx:id="gridPaneImages" layoutX="17.0" layoutY="13.0" minHeight="710.0" minWidth="950.0" prefHeight="707.0" prefWidth="944.0" style="-fx-background-color: #AAAAAA;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,11 +21,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <HBox layoutX="17.0" layoutY="720.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="944.0">
+      <HBox layoutX="20.0" layoutY="730.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="72.0" prefWidth="944.0">
          <children>
             <Button mnemonicParsing="false" onAction="#exitGameBtnClicled" prefHeight="66.0" prefWidth="161.0" text="Zamknij grę" />
             <Button mnemonicParsing="false" onAction="#backToMenuClicked" prefHeight="66.0" prefWidth="154.0" text="Wróć do menu" />
          </children>
       </HBox>
    </children>
+    <stylesheets>
+        <URL value="@gameWindowLayout.css" />
+    </stylesheets>
 </AnchorPane>

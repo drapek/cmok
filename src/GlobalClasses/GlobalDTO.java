@@ -1,7 +1,8 @@
 package GlobalClasses;
 
 import com.sun.javafx.css.Size;
-import com.sun.javafx.geom.Dimension2D;
+import javafx.geometry.Dimension2D;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -27,4 +28,5 @@ public class GlobalDTO {
     public static void setImageGridPaneDimension(int width, int height) {
         GlobalDTO.imageGridPaneDimension = new Dimension2D(width, height);
     }
+
 }

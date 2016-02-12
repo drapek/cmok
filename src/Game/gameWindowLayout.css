@@ -1,0 +1,4 @@
+.button-img {
+    -fx-border-style: solid;
+    -fx-background-image: url("img/card_front.jpg");
+}
