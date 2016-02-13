@@ -2,6 +2,7 @@ package Game;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Created by drapek on 2/12/16.
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 public class ImageButton {
     private Button btn;
     private Image image;
+    private ImageView imgView;
     private int nmbOfClicks;
     private boolean active;
 
@@ -43,5 +45,13 @@ public class ImageButton {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public ImageView getImgView() {
+        return imgView;
+    }
+
+    public void setImgView(ImageView imgView) {
+        this.imgView = imgView;
     }
 }

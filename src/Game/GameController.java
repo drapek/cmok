@@ -3,6 +3,9 @@ package Game;
 import GlobalClasses.ExitAlert;
 import GlobalClasses.GlobalDTO;
 import MainMenu.ProgramLauncher;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Dimension2D;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +23,7 @@ import java.util.ResourceBundle;
  */
 public class GameController implements Initializable {
     @FXML GridPane gridPaneImages;
-    private GameModel gameModel; //TODO initize it
+    private GameModel gameModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,9 +42,11 @@ public class GameController implements Initializable {
 
         for( int i = 0; i < rows; i++ ) {
             for( int j = 0; j < columns; j++) {
-                Button tmp = new Button("image HERE");
+                Button tmp = new Button();
                 tmp.setMinSize(buttonSize.getWidth(), buttonSize.getHeight());
-                tmp.setStyle("-fx-background-image: url('/Game/img/card_front.jpg');");
+                tmp.setStyle(GlobalDTO.imageBtnCardBackground);
+               // tmp.setOnMouseClicked(new ButtonShowImageHandler(j ,i));
+                tmp.setOnAction(new ButtonHandler(j, i));
                 gridPaneImages.add( tmp , j, i);
                 gameModel.addButton(j, i, tmp);
             }
@@ -55,10 +60,11 @@ public class GameController implements Initializable {
     private Dimension2D computeImageButtonSize(int rows, int columns) {
         double btnHeight = gridPaneImages.getMinHeight() / rows ;
         double btnWidth = gridPaneImages.getMinWidth() / columns ;
-
-        System.out.println("Obliczona wielkośc obrazaka to: " + btnWidth + ", " + btnHeight);
+        if( GlobalDTO.DEBUG_MODE)
+            System.out.println("Obliczona wielkośc obrazaka to: " + btnWidth + ", " + btnHeight);
         return new Dimension2D(btnWidth, btnHeight);
     }
+
 
     @FXML private void exitGameBtnClicled() {
         new ExitAlert().exitGameBtnClicled();
@@ -67,4 +73,40 @@ public class GameController implements Initializable {
     @FXML private void backToMenuClicked() {
         new ProgramLauncher().drawMainScene();
     }
+
+    private class ButtonHandler implements EventHandler{
+        int row_pos;
+        int col_pos;
+
+        public ButtonHandler(int col_pos, int row_pos) {
+            this.row_pos = row_pos;
+            this.col_pos = col_pos;
+        }
+
+        @Override
+        public void handle(Event event) {
+            if(GlobalDTO.DEBUG_MODE)
+                System.out.println("Kliknięto przycisk " + col_pos + ", " + row_pos);
+            gameModel.catchButtons(col_pos, row_pos);
+
+
+        }
+    }
+
+    private class ButtonShowImageHandler implements EventHandler {
+        int row_pos;
+        int col_pos;
+
+        public ButtonShowImageHandler(int col_pos, int row_pos) {
+            this.row_pos = row_pos;
+            this.col_pos = col_pos;
+        }
+
+        @Override
+        public void handle(Event event) {
+            gameModel.showImageOfImageButton(col_pos, row_pos);
+        }
+    }
+
+
 }
