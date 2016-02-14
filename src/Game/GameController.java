@@ -3,16 +3,12 @@ package Game;
 import GlobalClasses.ExitAlert;
 import GlobalClasses.GlobalDTO;
 import MainMenu.ProgramLauncher;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Dimension2D;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
@@ -31,7 +27,7 @@ public class GameController implements Initializable {
     }
 
     private void generateImageGridPane() {
-        gridPaneImages.setGridLinesVisible(true);
+        gridPaneImages.setGridLinesVisible(false);
 
         Dimension2D imageGridPaneDimension = GlobalDTO.getImageGridPaneDimension();
         int rows = (int) imageGridPaneDimension.getHeight();
@@ -45,8 +41,8 @@ public class GameController implements Initializable {
                 Button tmp = new Button();
                 tmp.setMinSize(buttonSize.getWidth(), buttonSize.getHeight());
                 tmp.setStyle(GlobalDTO.imageBtnCardBackground);
-               // tmp.setOnMouseClicked(new ButtonShowImageHandler(j ,i));
                 tmp.setOnAction(new ButtonHandler(j, i));
+                tmp.getStyleClass().addAll("button-img");
                 gridPaneImages.add( tmp , j, i);
                 gameModel.addButton(j, i, tmp);
             }
@@ -54,6 +50,7 @@ public class GameController implements Initializable {
         }
 
         gameModel.randImagesForButtons();
+        gameModel.randGridPaneBackground(gridPaneImages);
 
     }
 
@@ -67,7 +64,7 @@ public class GameController implements Initializable {
 
 
     @FXML private void exitGameBtnClicled() {
-        new ExitAlert().exitGameBtnClicled();
+        new ExitAlert().exitGameBtnClicked();
     }
 
     @FXML private void backToMenuClicked() {
@@ -93,20 +90,6 @@ public class GameController implements Initializable {
         }
     }
 
-    private class ButtonShowImageHandler implements EventHandler {
-        int row_pos;
-        int col_pos;
-
-        public ButtonShowImageHandler(int col_pos, int row_pos) {
-            this.row_pos = row_pos;
-            this.col_pos = col_pos;
-        }
-
-        @Override
-        public void handle(Event event) {
-            gameModel.showImageOfImageButton(col_pos, row_pos);
-        }
-    }
 
 
 }

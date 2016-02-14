@@ -1,6 +1,5 @@
 package MainMenu;
 
-import Game.GameController;
 import GlobalClasses.ExitAlert;
 import GlobalClasses.GlobalDTO;
 import javafx.fxml.FXML;
@@ -54,7 +53,7 @@ public class MenuController implements Initializable {
 
     @FXML private void exitGameBtnClicled() {
 
-        new ExitAlert().exitGameBtnClicled();
+        new ExitAlert().exitGameBtnClicked();
     }
 
 

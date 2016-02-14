@@ -1,5 +1,6 @@
 package Game;
 
+import GlobalClasses.ErrorAlert;
 import javafx.scene.image.Image;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public class ImageLoader {
         readPhotosFromDirectory("button_photos", buttons_photos);
 
         if( background_photos.size() < MIN_BACKGROUND_PHOTOS || buttons_photos.size() < MIN_BUTTONS_PHOTOS) {
-            //TODO alert about not enought pohots!
+            new ErrorAlert().errorOccurs("Za mało zdjęć by móc stworzyć rozgrywkę! Dograj zdjęcia");
             System.err.println("Za mało zdjęć by móc stworzyć rozgrywkę! Dograj zdjęcia");
             System.exit(1);
         }
@@ -46,13 +47,15 @@ public class ImageLoader {
 
                 }
             } catch (Exception e) {
+                new ErrorAlert().errorOccurs("Nie mogłem wczytać zdjęć z wczytanego już katalogu zdjęć :( (dotyczy to zdjęć buttonów do gry)");
                 System.err.println("Nie mogłem wczytać zdjęć z wczytanego już katalogu zdjęć :(");
-                //TODO add alert
+                System.exit(1);
             }
         }
         else {
-            //TODO alert about problem with reading images!
+            new ErrorAlert().errorOccurs("Nie mogłem wczytać zdjęć do gry, nie widzę katalogu przechowującego te zdjecia (może mają inną nazwę niż trzeba) :(");
             System.err.println("Nie mogłem wczytać zdjęć :(");
+            System.exit(1);
         }
 
     }

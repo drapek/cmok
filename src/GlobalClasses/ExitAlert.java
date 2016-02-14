@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
  */
 public class ExitAlert {
 
-    public void exitGameBtnClicled() {
+    public void exitGameBtnClicked() {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Pożegnanie :(");

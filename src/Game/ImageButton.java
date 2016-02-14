@@ -11,7 +11,7 @@ public class ImageButton {
     private Button btn;
     private Image image;
     private ImageView imgView;
-    private int nmbOfClicks;
+    private int nmbOfClicks = 0;
     private boolean active;
 
     public Button getBtn() {
@@ -35,8 +35,8 @@ public class ImageButton {
         return nmbOfClicks;
     }
 
-    public void setNmbOfClicks(int nmbOfClicks) {
-        this.nmbOfClicks = nmbOfClicks;
+    public void buttonClickedCounter() {
+        nmbOfClicks++;
     }
 
     public Image getImage() {

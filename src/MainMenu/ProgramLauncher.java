@@ -1,5 +1,6 @@
 package MainMenu;
 
+import GlobalClasses.ErrorAlert;
 import GlobalClasses.GlobalDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,7 @@ public class ProgramLauncher extends Application  {
             primaryStage.show();
 
         } catch (IOException exception) {
+            new ErrorAlert().errorOccurs("Nie mogłem załadować pliku VMainMenu.fxml odpowiadającego za wygląd okienek! Problem IO.");
             System.err.println("Nie mogłem załadować pliku VMainMenu.fxml odpowiadającego za wygląd okienek! Problem IO.");
             exception.printStackTrace();
             System.exit(1);

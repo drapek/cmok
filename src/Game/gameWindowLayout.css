@@ -1,4 +1,6 @@
 .button-img {
-    -fx-border-style: solid;
-    -fx-background-image: url("img/card_front.jpg");
+    -fx-border-style: none;
+    -fx-background-image: url("img/card_front1.png");
+    -fx-background-size: stretch;
 }
+

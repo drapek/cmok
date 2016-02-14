@@ -1,14 +1,24 @@
 package Game;
 
+import GlobalClasses.ErrorAlert;
 import GlobalClasses.GlobalDTO;
-import javafx.event.Event;
+import GlobalClasses.VictoryAlert;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
+import sun.java2d.loops.GraphicsPrimitive;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by drapek on 2/12/16.
@@ -19,6 +29,7 @@ public class GameModel {
     private ArrayList<ImageButton> buttonsWithoutImage = new ArrayList<>();
     private Random rnd = new Random();
     private ImageView btnImageBackground;
+    private int nmbOfHitsButtons;
 
     private boolean haveRemembBtn = false; //says if user already click another button witch whom we must compare new one
     private int prev_col = -1;
@@ -29,6 +40,7 @@ public class GameModel {
     public GameModel(int columns, int rows) {
         this.columns = columns;
         this.rows = rows;
+        this.nmbOfHitsButtons = 0;
 
         imageButtons = new ImageButton[columns][rows];
 
@@ -91,11 +103,15 @@ public class GameModel {
                 System.out.println("Scieżka zdjęcia tła buttonów: " + imageBckFile.getAbsoluteFile());
             }
         } catch (Exception e) {
-            //TODO add alert here
+            new ErrorAlert().errorOccurs("Nie mogłem wczytać obrazka odpowiedzialnego za tło kart!");
             System.err.println("Nie mogłem wczytać obrazka odpowiedzialnego za tło kart!");
             System.exit(1);
         }
 
+    }
+
+    public void randGridPaneBackground(GridPane gridPaneImages) {
+        gridPaneImages.setStyle("-fx-background-image: url('/Game/img/card_front.jpg');");
     }
 
     private ImageView fitImageToButton(Button btn, Image img) {
@@ -119,18 +135,43 @@ public class GameModel {
     }
 
     public void catchButtons(int btn_col, int btn_row) {
-        ImageButton btn = imageButtons[btn_col][btn_row];
+        ImageButton imgBtn = imageButtons[btn_col][btn_row];
         showImageOfImageButton(btn_col, btn_row);
+        imgBtn.buttonClickedCounter();
 
         if(haveRemembBtn) {
             haveRemembBtn = false;
+            ImageButton imgBtnPrev = imageButtons[prev_col][prv_row];
 
-            //TODO compare this buttons
-            //TODO don't forget to wait and unflip buttons
-            pause(1000);
 
-            setDefaultBtnBackgr(imageButtons[prev_col][prv_row].getBtn());
-            setDefaultBtnBackgr(btn.getBtn());
+            //back the normal background with delay of 1000 ms
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> {
+                        setDefaultBtnBackgr(imgBtnPrev.getBtn());
+                        setDefaultBtnBackgr(imgBtn.getBtn());
+
+                        //check if it is a hit
+                        if( imgBtn.getImage().equals(imgBtnPrev.getImage()) && !imgBtn.equals(imgBtnPrev) ) {
+                            imgBtn.getBtn().setVisible(true);
+                            imgBtnPrev.getBtn().setVisible(true);
+
+                            imgBtn.getBtn().setDisable(true);
+                            imgBtnPrev.getBtn().setDisable(true);
+
+                            imgBtn.setActive(false);
+                            imgBtnPrev.setActive(false);
+
+                            nmbOfHitsButtons += 2;
+                            //check if all buttons are unhidden
+                            if( nmbOfHitsButtons >= (rows * columns) - 1)
+                                new VictoryAlert().gameWin();
+                        }
+                    });
+                }
+            }, 1000);
 
         }
         else {
@@ -144,17 +185,11 @@ public class GameModel {
         btn.setGraphic(null);
     }
 
-    private void pause(long sleeptime) {
-        try {
-            Thread.sleep(sleeptime);
-        } catch (InterruptedException ex) {
-            //ToCatchOrNot
-        }
-    }
 
     public void showImageOfImageButton(int btn_col, int btn_row) {
         ImageButton btn = imageButtons[btn_col][btn_row];
         btn.getBtn().setGraphic(btn.getImgView());
+
     }
 
 }
