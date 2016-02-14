@@ -32,7 +32,7 @@ public class GameController implements Initializable {
         Dimension2D imageGridPaneDimension = GlobalDTO.getImageGridPaneDimension();
         int rows = (int) imageGridPaneDimension.getHeight();
         int columns = (int) imageGridPaneDimension.getWidth();
-        gameModel = new GameModel(columns, rows);
+        gameModel = new GameModel(columns, rows, gridPaneImages);
 
         Dimension2D buttonSize = computeImageButtonSize(rows, columns);
 
@@ -49,8 +49,7 @@ public class GameController implements Initializable {
 
         }
 
-        gameModel.randImagesForButtons();
-        gameModel.randGridPaneBackground(gridPaneImages);
+        gameModel.randImagesForGame();
 
     }
 

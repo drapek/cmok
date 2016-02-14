@@ -16,13 +16,13 @@ public class ImageLoader {
     private static final int MIN_BACKGROUND_PHOTOS = 3;
     private static final int MIN_BUTTONS_PHOTOS = 36;
 
-    private ArrayList<Image> background_photos = new ArrayList<>();
+    private ArrayList<File> background_photos = new ArrayList<>();
     private ArrayList<Image> buttons_photos = new ArrayList<>();
 
 
     public ImageLoader() {
-        readPhotosFromDirectory("background_photos", background_photos);
-        readPhotosFromDirectory("button_photos", buttons_photos);
+        readPhotosFromDirectory("background_photos", background_photos, true);
+        readPhotosFromDirectory("button_photos", buttons_photos, false);
 
         if( background_photos.size() < MIN_BACKGROUND_PHOTOS || buttons_photos.size() < MIN_BUTTONS_PHOTOS) {
             new ErrorAlert().errorOccurs("Za mało zdjęć by móc stworzyć rozgrywkę! Dograj zdjęcia");
@@ -31,7 +31,7 @@ public class ImageLoader {
         }
     }
 
-    private void readPhotosFromDirectory(String dirPath, ArrayList<Image> whereToStore) {
+    private void readPhotosFromDirectory(String dirPath, ArrayList whereToStore, boolean rememberOnlyPaths) {
         File directory = new File(PHOTOS_LOCALIZATION + dirPath);
 
         System.out.println("Katalog wczytywanych zdjęć: " + directory.getAbsolutePath());
@@ -40,9 +40,13 @@ public class ImageLoader {
             try {
                 for (File f : directory.listFiles()) {
                     String imagePath = f.toURI().toString();
-                    Image tmp = new Image(imagePath);
+                    if( rememberOnlyPaths) {
+                      whereToStore.add(f);
+                    } else {
+                        Image tmp = new Image(imagePath);
+                        whereToStore.add(tmp);
+                    }
 
-                    whereToStore.add(tmp);
                     System.out.println("Wczytano zdjęcie: " + imagePath);
 
                 }
@@ -68,9 +72,9 @@ public class ImageLoader {
         return result;
     }
 
-    public Image randomBackgroundPhoto() {
+    public File randomBackgroundPhoto() {
         int randed = rnd.nextInt(background_photos.size());
-        Image result = background_photos.get(randed);
+        File result = background_photos.get(randed);
         background_photos.remove(randed);
 
         return result;

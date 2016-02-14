@@ -30,6 +30,8 @@ public class GameModel {
     private Random rnd = new Random();
     private ImageView btnImageBackground;
     private int nmbOfHitsButtons;
+    private boolean blockButtons;
+    private GridPane gridPane;
 
     private boolean haveRemembBtn = false; //says if user already click another button witch whom we must compare new one
     private int prev_col = -1;
@@ -37,10 +39,11 @@ public class GameModel {
 
     private static ImageButton [][] imageButtons;
 
-    public GameModel(int columns, int rows) {
+    public GameModel(int columns, int rows, GridPane gridPane) {
         this.columns = columns;
         this.rows = rows;
         this.nmbOfHitsButtons = 0;
+        this.gridPane = gridPane;
 
         imageButtons = new ImageButton[columns][rows];
 
@@ -59,8 +62,9 @@ public class GameModel {
 
     }
 
-    public void randImagesForButtons() {
+    public void randImagesForGame() {
         ImageLoader imgLoader = new ImageLoader();
+        randGridPaneBackground(imgLoader);
 
         initBtnImageBackground();
 
@@ -110,8 +114,13 @@ public class GameModel {
 
     }
 
-    public void randGridPaneBackground(GridPane gridPaneImages) {
-        gridPaneImages.setStyle("-fx-background-image: url('/Game/img/card_front.jpg');");
+    public void randGridPaneBackground(ImageLoader imgLoad) {
+        String bckPhotoPath = imgLoad.randomBackgroundPhoto().toURI().toString();
+
+        gridPane.setStyle("-fx-background-image: url('"+ bckPhotoPath +"');" +
+        " -fx-background-size: stretch");
+
+
     }
 
     private ImageView fitImageToButton(Button btn, Image img) {
@@ -135,6 +144,9 @@ public class GameModel {
     }
 
     public void catchButtons(int btn_col, int btn_row) {
+        if( blockButtons )
+            return;
+
         ImageButton imgBtn = imageButtons[btn_col][btn_row];
         showImageOfImageButton(btn_col, btn_row);
         imgBtn.buttonClickedCounter();
@@ -142,6 +154,7 @@ public class GameModel {
         if(haveRemembBtn) {
             haveRemembBtn = false;
             ImageButton imgBtnPrev = imageButtons[prev_col][prv_row];
+            blockButtons = true;
 
 
             //back the normal background with delay of 1000 ms
@@ -152,6 +165,8 @@ public class GameModel {
                     Platform.runLater(() -> {
                         setDefaultBtnBackgr(imgBtnPrev.getBtn());
                         setDefaultBtnBackgr(imgBtn.getBtn());
+
+                        blockButtons = false;
 
                         //check if it is a hit
                         if( imgBtn.getImage().equals(imgBtnPrev.getImage()) && !imgBtn.equals(imgBtnPrev) ) {
@@ -166,8 +181,10 @@ public class GameModel {
 
                             nmbOfHitsButtons += 2;
                             //check if all buttons are unhidden
-                            if( nmbOfHitsButtons >= (rows * columns) - 1)
+                            if( nmbOfHitsButtons >= (rows * columns) - 1) {
+                                removeAllButtons();
                                 new VictoryAlert().gameWin();
+                            }
                         }
                     });
                 }
@@ -181,15 +198,23 @@ public class GameModel {
         }
     }
 
+    public void showImageOfImageButton(int btn_col, int btn_row) {
+        ImageButton btn = imageButtons[btn_col][btn_row];
+        btn.getBtn().setGraphic(btn.getImgView());
+    }
+
     private void setDefaultBtnBackgr(Button btn) {
         btn.setGraphic(null);
     }
 
-
-    public void showImageOfImageButton(int btn_col, int btn_row) {
-        ImageButton btn = imageButtons[btn_col][btn_row];
-        btn.getBtn().setGraphic(btn.getImgView());
-
+    private void removeAllButtons() {
+        for( int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                gridPane.getChildren().removeAll(imageButtons[i][j].getBtn());
+            }
+        }
     }
+
+
 
 }
