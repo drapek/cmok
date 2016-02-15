@@ -12,11 +12,11 @@ public class ErrorAlert {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Buuuu! Coś poszło nie tak");
         alert.setHeaderText(null);
-        alert.setContentText("Z przyczyn wewnętrznych nie można uruchomić programu :( Przekaż Pawłowi poniższą informacje: \n" +
+        alert.setContentText("Z przyczyn wewnętrznych nie można uruchomić programu :( \n Przekaż Pawłowi poniższą informacje: \n" +
          errMessage);
 
         try {
-            alert.setGraphic(new ImageView(this.getClass().getResource("./img/sad_cat.jpg").toString()));
+            alert.setGraphic(new ImageView(this.getClass().getResource("/GlobalClasses/img/sad_cat.jpg").toString()));
         } catch (Exception e) {
             System.err.println("Can't find icon for congrats dialog which appear on wining game");
             e.printStackTrace();

@@ -15,7 +15,7 @@ public class VictoryAlert {
         alert.setContentText("Udało Ci się odsłonić wszystkie pola! Ty sprytna bestio :*");
 
         try {
-            alert.setGraphic(new ImageView(this.getClass().getResource("./img/congrats.jpg").toString()));
+            alert.setGraphic(new ImageView(this.getClass().getResource("/GlobalClasses/img/congrats.png").toString()));
         } catch (Exception e) {
             System.err.println("Can't find icon for congrats dialog which appear on wining game");
             e.printStackTrace();

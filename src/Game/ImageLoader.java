@@ -17,12 +17,14 @@ public class ImageLoader {
     private static final int MIN_BUTTONS_PHOTOS = 36;
 
     private ArrayList<File> background_photos = new ArrayList<>();
-    private ArrayList<Image> buttons_photos = new ArrayList<>();
+    private ArrayList<File> buttons_photos = new ArrayList<>();
 
 
     public ImageLoader() {
-        readPhotosFromDirectory("background_photos", background_photos, true);
-        readPhotosFromDirectory("button_photos", buttons_photos, false);
+        readPhotosFromDirectory("background_photos", background_photos);
+        System.out.println("Wczytano zdjęć tła: " + background_photos.size());
+        readPhotosFromDirectory("button_photos", buttons_photos);
+        System.out.println("Wczytano zdjęć buttonów: " + buttons_photos.size());
 
         if( background_photos.size() < MIN_BACKGROUND_PHOTOS || buttons_photos.size() < MIN_BUTTONS_PHOTOS) {
             new ErrorAlert().errorOccurs("Za mało zdjęć by móc stworzyć rozgrywkę! Dograj zdjęcia");
@@ -31,7 +33,7 @@ public class ImageLoader {
         }
     }
 
-    private void readPhotosFromDirectory(String dirPath, ArrayList whereToStore, boolean rememberOnlyPaths) {
+    private void readPhotosFromDirectory(String dirPath, ArrayList whereToStore) {
         File directory = new File(PHOTOS_LOCALIZATION + dirPath);
 
         System.out.println("Katalog wczytywanych zdjęć: " + directory.getAbsolutePath());
@@ -39,16 +41,7 @@ public class ImageLoader {
         if( directory.isDirectory()) {
             try {
                 for (File f : directory.listFiles()) {
-                    String imagePath = f.toURI().toString();
-                    if( rememberOnlyPaths) {
-                      whereToStore.add(f);
-                    } else {
-                        Image tmp = new Image(imagePath);
-                        whereToStore.add(tmp);
-                    }
-
-                    System.out.println("Wczytano zdjęcie: " + imagePath);
-
+                    whereToStore.add(f);
                 }
             } catch (Exception e) {
                 new ErrorAlert().errorOccurs("Nie mogłem wczytać zdjęć z wczytanego już katalogu zdjęć :( (dotyczy to zdjęć buttonów do gry)");
@@ -66,8 +59,10 @@ public class ImageLoader {
 
     public Image randomButtonPhoto() {
         int randed = rnd.nextInt(buttons_photos.size());
-        Image result = buttons_photos.get(randed);
+        String photoPath = buttons_photos.get(randed).toURI().toString();
+        Image result = new Image(photoPath);
         buttons_photos.remove(randed);
+
 
         return result;
     }

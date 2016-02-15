@@ -2,6 +2,7 @@ package MainMenu;
 
 import GlobalClasses.ErrorAlert;
 import GlobalClasses.GlobalDTO;
+import GlobalClasses.VictoryAlert;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +32,7 @@ public class ProgramLauncher extends Application  {
             primaryStage.setTitle("cmok");
             primaryStage.setScene(new Scene(root, 1000, 800));
             primaryStage.show();
+
 
         } catch (IOException exception) {
             new ErrorAlert().errorOccurs("Nie mogłem załadować pliku VMainMenu.fxml odpowiadającego za wygląd okienek! Problem IO.");

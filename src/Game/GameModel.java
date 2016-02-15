@@ -107,9 +107,6 @@ public class GameModel {
         imgView.setFitWidth(btn.getMinWidth() - 20);
         imgView.setFitHeight(btn.getMinHeight() - 10);
 
-        if(GlobalDTO.DEBUG_MODE)
-            System.out.println("Rozmiar zdjęcia w buttonie: " + imgView.getFitWidth() + ", " + imgView.getFitHeight());
-
         return imgView;
     }
 

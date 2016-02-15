@@ -40,7 +40,7 @@ public class MenuController implements Initializable {
         mainWindow.setTitle(windowTitle);
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../Game/game.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Game/game.fxml"));
             mainWindow.setScene(new Scene(root, 1000, 800));
             mainWindow.show();
         } catch (IOException exception) {
