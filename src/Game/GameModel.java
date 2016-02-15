@@ -66,8 +66,6 @@ public class GameModel {
         ImageLoader imgLoader = new ImageLoader();
         randGridPaneBackground(imgLoader);
 
-        initBtnImageBackground();
-
         //it's rand a photo and assign it to two random buttons
         while ( buttonsWithoutImage.size() > 1) {
             Image randedImage = imgLoader.randomButtonPhoto();
@@ -92,25 +90,6 @@ public class GameModel {
 
         }
 
-
-    }
-
-    private void initBtnImageBackground() {
-        try {
-            File imageBckFile = new File("Game/img/card_front.jpg");
-            Image bckgImg = new Image(imageBckFile.toURI().toString());
-            btnImageBackground = new ImageView(bckgImg);
-            btnImageBackground.setFitWidth(imageButtons[0][0].getBtn().getMinWidth() - 20);
-            btnImageBackground.setFitHeight(imageButtons[0][0].getBtn().getMinHeight() - 10);
-
-            if(GlobalDTO.DEBUG_MODE) {
-                System.out.println("Scieżka zdjęcia tła buttonów: " + imageBckFile.getAbsoluteFile());
-            }
-        } catch (Exception e) {
-            new ErrorAlert().errorOccurs("Nie mogłem wczytać obrazka odpowiedzialnego za tło kart!");
-            System.err.println("Nie mogłem wczytać obrazka odpowiedzialnego za tło kart!");
-            System.exit(1);
-        }
 
     }
 

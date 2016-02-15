@@ -12,7 +12,7 @@ public class GlobalDTO {
     public final static boolean DEBUG_MODE = true;
     static private Stage mainWindowHandler;
     static private Dimension2D imageGridPaneDimension;
-    public static final String imageBtnCardBackground = "";// "-fx-background-image: url('/Game/img/card_front.jpg');";
+    public static final String imageBtnCardBackground = "";
 
     static public Stage getMainWindowHandler() {
         return mainWindowHandler;

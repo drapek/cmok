@@ -10,26 +10,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="8000.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #777777;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.MenuController">
+<AnchorPane fx:id="MainArchorPane" maxHeight="8000.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.MenuController">
    <effect>
       <ColorAdjust />
    </effect>
    <children>
-      <Pane id="pane_buttons" layoutY="127.0" prefHeight="410.0" prefWidth="618.0" style="-fx-background-color: #236612;" stylesheets="@css/mainmenu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
+      <Pane id="pane_buttons" layoutY="127.0" prefHeight="410.0" prefWidth="618.0" stylesheets="@css/mainmenu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
          <children>
-            <VBox alignment="CENTER" layoutX="217.0" layoutY="94.0" prefHeight="341.0" prefWidth="566.0" snapToPixel="false">
+            <VBox alignment="CENTER" layoutX="217.0" layoutY="94.0" prefHeight="341.0" prefWidth="566.0" snapToPixel="false" style="-fx-background-image: img/main_menu_background.jpg;">
                <children>
-                  <Button fx:id="btn4x4" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clickedGame4x4" prefHeight="87.0" prefWidth="416.0" text="Poziom łatwy (4 x 4)" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+                  <Button id="record-sales" fx:id="btn4x4" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clickedGame4x4" prefHeight="87.0" prefWidth="416.0" text="Poziom łatwy (4 x 4)" textAlignment="CENTER" textFill="#fff9f9" textOverrun="WORD_ELLIPSIS">
                      <VBox.margin>
                         <Insets bottom="8.0" top="8.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btn4x6" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clickedGame4x6" prefHeight="77.0" prefWidth="415.0" text="Poziom średni (4 x 6)" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+                  <Button id="record-sales" fx:id="btn4x6" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clickedGame4x6" prefHeight="77.0" prefWidth="415.0" text="Poziom średni (4 x 6)" textAlignment="CENTER" textFill="#fff9f9" textOverrun="WORD_ELLIPSIS">
                      <VBox.margin>
                         <Insets bottom="8.0" top="8.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btn6x6" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clickedGame6x6" prefHeight="79.0" prefWidth="416.0" text="Poziom trudny (6 x 6)" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+                  <Button id="record-sales" fx:id="btn6x6" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clickedGame6x6" prefHeight="79.0" prefWidth="416.0" text="Poziom trudny (6 x 6)" textAlignment="CENTER" textFill="fff9f9" textOverrun="WORD_ELLIPSIS">
                      <VBox.margin>
                         <Insets bottom="8.0" top="8.0" />
                      </VBox.margin>
@@ -38,12 +38,7 @@
             </VBox>
             <VBox alignment="CENTER" layoutX="191.0" layoutY="426.0" prefHeight="178.0" prefWidth="618.0">
                <children>
-                  <Button disable="true" mnemonicParsing="false" text="dograj zdjęcia...">
-                     <VBox.margin>
-                        <Insets bottom="8.0" top="8.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#exitGameBtnClicled" prefHeight="74.0" prefWidth="418.0" text="Wyjdź" textAlignment="CENTER" textOverrun="CLIP" />
+                  <Button id="record-sales" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#exitGameBtnClicled" prefHeight="74.0" prefWidth="418.0" text="Wyjdź" textAlignment="CENTER" textFill="fff9f9" textOverrun="CLIP" />
                </children>
             </VBox>
          </children>
@@ -53,7 +48,7 @@
       </Pane>
       <Pane id="pane_logo" prefHeight="245.0" prefWidth="1017.0">
          <children>
-            <ImageView fx:id="imgLogo" fitHeight="201.0" fitWidth="607.0" layoutX="191.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgLogo" fitHeight="201.0" fitWidth="797.0" layoutX="87.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

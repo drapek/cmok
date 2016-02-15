@@ -59,6 +59,6 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imgLogo.setImage(new Image("MainMenu/img/usta_logo.png"));
+        imgLogo.setImage(new Image("MainMenu/img/usta_logo_v2.png"));
     }
 }
