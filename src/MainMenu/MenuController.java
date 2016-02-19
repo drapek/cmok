@@ -41,7 +41,7 @@ public class MenuController implements Initializable {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/Game/game.fxml"));
-            mainWindow.setScene(new Scene(root, 1000, 800));
+            mainWindow.setScene(new Scene(root, 1180, 740));
             mainWindow.show();
         } catch (IOException exception) {
             System.err.println("Nie mogłem załadować pliku game.fxml odpowiadającego za wygląd okienek! Problem IO.");

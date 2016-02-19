@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="MainArchorPane" maxHeight="8000.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.MenuController">
+<AnchorPane fx:id="MainArchorPane" maxHeight="8000.0" maxWidth="1000.0" minHeight="712.0" minWidth="1000.0" prefHeight="740.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.MenuController">
    <effect>
       <ColorAdjust />
    </effect>
    <children>
-      <Pane id="pane_buttons" layoutY="127.0" prefHeight="410.0" prefWidth="618.0" stylesheets="@css/mainmenu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
+      <Pane id="pane_buttons" layoutY="127.0" prefHeight="642.0" prefWidth="1000.0" stylesheets="@css/mainmenu.css" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
          <children>
             <VBox alignment="CENTER" layoutX="217.0" layoutY="94.0" prefHeight="341.0" prefWidth="566.0" snapToPixel="false" style="-fx-background-image: img/main_menu_background.jpg;">
                <children>
