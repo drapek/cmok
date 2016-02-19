@@ -31,6 +31,7 @@ public class ProgramLauncher extends Application  {
             Parent root = FXMLLoader.load(getClass().getResource("VMainMenu.fxml"));
             primaryStage.setTitle("cmok");
             primaryStage.setScene(new Scene(root, 1000, 730));
+            primaryStage.setFullScreen(true);
             primaryStage.show();
 
 
